@@ -1,0 +1,23 @@
+Game cycle:
+	1. Draw board and barriers according to level
+	2. Add rewards on all available to move positions
+	3. Add special coins on random positions
+	4. Initialize player character
+	5. Create enemies
+	6. Start the game
+
+
+Goal:
+	Collect every reward on the map without losing all available lives ( 3 ). After reaching the goal level is automatically marked as complete.
+	Level completion allows to progress to the next level if they are available. Ultimate goal is to complete all available levels
+
+
+Game logic:
+	Player has control over a character that moves on the game board and is able to collect "points" on the ground. For each collected point player 	will receive score. For collecting special points players will receive increased rewards, and the ability to consume enemies for a short 	duration of time. If an enemy is consumed, a new one will respawn shortly, ensuring that there's always a constant amount of enemies.
+
+
+Additional functions:
+	1. Settings: FPS parameter ( 30, 60, 120 ), background color change ( black / white )
+	2. Saving system: After a level is complete game automatically saves level progression in a separate file. At the start of each session  game			          will look for a save file to load progress.
+
+   
