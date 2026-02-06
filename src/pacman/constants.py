@@ -25,3 +25,8 @@ BLACK = (0, 0, 0)
 ORANGE = (255, 157, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
+YELLOW = (255, 255, 0)
+
+
+#Speeds
+PACMAN_SPEED = 2
