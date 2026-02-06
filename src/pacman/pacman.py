@@ -41,21 +41,56 @@ class Pacman:
         return abs(inner_pos_x - SQUARE_SIZE // 2) <= margin and abs(inner_pos_y - SQUARE_SIZE // 2) <= margin
 
     def can_move(self, vx, vy):
-        # Проверка возможности движения в заданном направлении
         board_array = self.board.get_board()
         col = int((self.x - CENTERING_W) // SQUARE_SIZE)
         row = int((self.y - CENTERING_H) // SQUARE_SIZE)
         
-        # Рассчитываем индексы следующей клетки
         next_col = col + (1 if vx > 0 else -1 if vx < 0 else 0)
         next_row = row + (1 if vy > 0 else -1 if vy < 0 else 0)
 
-        # Проверка границ и стен (#)
-        if 0 <= next_row < len(board_array) and 0 <= next_col < len(board_array[0]):
+        # Если Пакман выходит за горизонтальные границы (телепорт)
+        if next_col < 0 or next_col >= len(board_array[0]):
+            # Разрешаем движение только если это горизонтальный туннель (пустое место)
+            return True 
+
+        # Стандартная проверка стен
+        if 0 <= next_row < len(board_array):
             return board_array[next_row][next_col] != "#"
         return False
 
     def update(self):
+        # 1. Логика поворота и остановки перед стенами (оставляем как есть)
+        if (self.next_vel_x != 0 or self.next_vel_y != 0) and self.is_at_center():
+            if self.can_move(self.next_vel_x, self.next_vel_y):
+                col = int((self.x - CENTERING_W) // SQUARE_SIZE)
+                row = int((self.y - CENTERING_H) // SQUARE_SIZE)
+                self.x = CENTERING_W + col * SQUARE_SIZE + SQUARE_SIZE // 2
+                self.y = CENTERING_H + row * SQUARE_SIZE + SQUARE_SIZE // 2
+                
+                self.vel_x, self.vel_y = self.next_vel_x, self.next_vel_y
+                self.next_vel_x, self.next_vel_y = 0, 0
+
+        if not self.can_move(self.vel_x, self.vel_y) and self.is_at_center():
+            self.vel_x, self.vel_y = 0, 0
+
+        # Обновляем координаты
+        self.x += self.vel_x
+        self.y += self.vel_y
+
+        # --- НОВАЯ ЛОГИКА ТЕЛЕПОРТАЦИИ ---
+        # Определяем границы
+        cols_count = len(self.board.get_board()[0])
+        left_bound = CENTERING_W
+        right_bound = CENTERING_W + cols_count * SQUARE_SIZE
+
+        # Телепортация на одну клетку раньше
+        # Раньше: self.x < left_bound - SQUARE_SIZE // 2
+        if self.x < left_bound + SQUARE_SIZE // 2: 
+            self.x = right_bound - SQUARE_SIZE // 2
+            
+        # Раньше: self.x > right_bound + SQUARE_SIZE // 2
+        elif self.x > right_bound - SQUARE_SIZE // 2:
+            self.x = left_bound + SQUARE_SIZE // 2
         # 1. Если есть запланированный поворот и мы в центре клетки
         if (self.next_vel_x != 0 or self.next_vel_y != 0) and self.is_at_center():
             if self.can_move(self.next_vel_x, self.next_vel_y):

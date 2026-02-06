@@ -29,4 +29,4 @@ YELLOW = (255, 255, 0)
 
 
 #Speeds
-PACMAN_SPEED = 2
+PACMAN_SPEED = 1
