@@ -1,4 +1,5 @@
 import pygame as pg
+import math
 from .constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
 
 class Pacman:
@@ -19,8 +20,40 @@ class Pacman:
         self.next_vel_x = 0
         self.next_vel_y = 0
 
+        # --- НОВОЕ: АНИМАЦИЯ ---
+        self.mouth_open_angle = 0  # Текущий угол открытия рта
+        self.animation_speed = 5    # Скорость анимации
+        self.opening = True
+
+
     def draw(self, window):
-        pg.draw.circle(window, YELLOW, (int(self.x), int(self.y)), self.radius)
+        center = (int(self.x), int(self.y))
+        
+        if self.mouth_open_angle == 0 or (self.vel_x == 0 and self.vel_y == 0):
+            pg.draw.circle(window, YELLOW, center, self.radius)
+        else:
+            # Вычисляем направление (в радианах)
+            base_angle = 0
+            if self.vel_x > 0: base_angle = 0
+            elif self.vel_x < 0: base_angle = math.pi
+            elif self.vel_y > 0: base_angle = 0.5 * math.pi
+            elif self.vel_y < 0: base_angle = 1.5 * math.pi
+
+            # Генерируем точки для дуги
+            points = [center]
+            num_points = 20
+            # Вырезаем угол рта из 360 градусов
+            start_deg = math.degrees(base_angle) + self.mouth_open_angle
+            end_deg = math.degrees(base_angle) + (360 - self.mouth_open_angle)
+            
+            for i in range(num_points + 1):
+                angle = math.radians(start_deg + (end_deg - start_deg) * i / num_points)
+                x = self.x + self.radius * math.cos(angle)
+                y = self.y + self.radius * math.sin(angle)
+                points.append((x, y))
+            
+            pg.draw.polygon(window, YELLOW, points)
+
 
     def handle_keys(self, event):
         # Метод, который вызывается в Game.py для WASD управления
@@ -126,3 +159,13 @@ class Pacman:
             elif cell == "o":
                 board_array[row][col] = " "
                 self.score.add(50) # Вызов метода из score.py
+
+        if self.vel_x != 0 or self.vel_y != 0: # Анимируем только в движении
+            if self.opening:
+                self.mouth_open_angle += self.animation_speed
+                if self.mouth_open_angle >= 45: self.opening = False
+            else:
+                self.mouth_open_angle -= self.animation_speed
+                if self.mouth_open_angle <= 0: self.opening = True
+        else:
+            self.mouth_open_angle = 0 # Закрываем рот при остановке 
