@@ -2,9 +2,10 @@ import pygame as pg
 from .constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
 
 class Pacman:
-    def __init__(self, col, row, board):
+    def __init__(self, col, row, board, score):
         # Сохраняем ссылку на доску, чтобы проверять стены
         self.board = board 
+        self.score = score
         # Центрируем Пакмана в клетке
         self.x = CENTERING_W + col * SQUARE_SIZE + SQUARE_SIZE // 2
         self.y = CENTERING_H + row * SQUARE_SIZE + SQUARE_SIZE // 2
@@ -111,3 +112,17 @@ class Pacman:
         # Обновляем координаты
         self.x += self.vel_x
         self.y += self.vel_y
+
+        # Логика поедания точек
+        board_array = self.board.get_board()
+        col = int((self.x - CENTERING_W) // SQUARE_SIZE)
+        row = int((self.y - CENTERING_H) // SQUARE_SIZE)
+
+        if 0 <= row < len(board_array) and 0 <= col < len(board_array[0]):
+            cell = board_array[row][col]
+            if cell == ".":
+                board_array[row][col] = " "
+                self.score.add(10) # Вызов метода из score.py
+            elif cell == "o":
+                board_array[row][col] = " "
+                self.score.add(50) # Вызов метода из score.py
