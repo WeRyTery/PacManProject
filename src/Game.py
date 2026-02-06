@@ -1,13 +1,13 @@
 import pygame as pg
 from pacman.constants import WIDTH, HEIGHT
-from pacman.board_generator import Board_generator
+from pacman.board import Board
 
 FPS = 60
 
 WIN = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("PacMan")
 
-board = Board_generator()
+board = Board()
 
 def main():
     run = True

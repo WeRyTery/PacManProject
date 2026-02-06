@@ -1,12 +1,45 @@
-import pygame
-from .constants import COINS_PERCENTAGE, SUPER_COINS_PERCENTAGE
 from .board_generator import Board_generator
 
 class Board:
     def __init__(self):
-        self.board = []
-        self.coins = COINS_PERCENTAGE
-        self.super_coins = SUPER_COINS_PERCENTAGE
+        #Game level pattern
+        self.board = [
+            list("############################"),
+            list("#............##............#"),
+            list("#.####.#####.##.#####.####.#"),
+            list("#o####.#####.##.#####.####o#"),
+            list("#.####.#####.##.#####.####.#"),
+            list("#..........................#"),
+            list("#.####.##.########.##.####.#"),
+            list("#.####.##.########.##.####.#"),
+            list("#......##....##....##......#"),
+            list("######.##### ## #####.######"),
+            list("     #.##### ## #####.#     "),
+            list("     #.##          ##.#     "),
+            list("     #.## ###==### ##.#     "),
+            list("######.## #      # ##.######"),
+            list("       .   #      #   .     "),
+            list("######.## #      # ##.######"),
+            list("     #.## ######## ##.#     "),
+            list("     #.##          ##.#     "),
+            list("     #.## ######## ##.#     "),
+            list("######.## ######## ##.######"),
+            list("#............##............#"),
+            list("#.####.#####.##.#####.####.#"),
+            list("#o..##................##..o#"),
+            list("###.##.##.########.##.##.###"),
+            list("#......##....##....##......#"),
+            list("#.##########.##.##########.#"),
+            list("#..........................#"),
+            list("############################"),
+        ]
     
     def draw_board(self, WIN):
-        Board_generator.draw_board(WIN)
+        Board_generator.draw_board(self, WIN, self.board)
+    
+    def get_board(self):
+        return self.board
+    
+    def update_board(self, new_board):
+        self.board = new_board
+        
