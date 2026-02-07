@@ -95,6 +95,9 @@ class Pacman:
                 # Вызываем испуг призраков
                 if self.ghost_handler: 
                     self.ghost_handler.make_ghosts_scared()
+            elif cell == "F":
+                board_array[row][col] = " "
+                self.score.add(100)
 
         # Анимация
         if self.vel_x != 0 or self.vel_y != 0:
