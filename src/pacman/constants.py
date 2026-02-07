@@ -1,27 +1,39 @@
 import pygame
 
-#Board params
+# Board params
 WIDTH, HEIGHT = 1280, 720
 ROWS, COLUMNS = 60, 60
 
-#Board borders
+# Board borders
 CENTERING_H = HEIGHT * 0.05
 CENTERING_W = WIDTH * 0.25
 
-#Square parameters
+# Square parameters
 SQUARE_SIZE = WIDTH // COLUMNS
 
-#Circle parameters
+# Circle parameters
 CIRCLE_SIZE = WIDTH // COLUMNS
 CIRCLE_Y_OFFSET = 10
 CIRCLE_X_OFFSET = 10
 REGULAR_RADIUS = 2
 SPECIAL_RADIUS = 5
 
-#Colors
+# Colors
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
 ORANGE = (255, 157, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
+YELLOW = (255, 255, 0)
+CYAN = (0, 255, 255)
+PINK = (255, 182, 193)
+SCARED_GHOST_COLOR = (33, 33, 255)
+
+# Game Settings
+PACMAN_SPEED = 1
+GHOST_SPEED = 1
+PACMAN_LIVES = 3
+SCARED_TIME = 7000 
+FLASHING_TIME = 2000   
+FLASH_INTERVAL = 200
