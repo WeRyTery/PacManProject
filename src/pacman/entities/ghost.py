@@ -1,6 +1,6 @@
 import pygame as pg
 import random
-from .constants import (
+from ..core.constants import (
     SQUARE_SIZE, CENTERING_W, CENTERING_H, GHOST_SPEED, 
     SCARED_GHOST_COLOR, SCARED_TIME, WHITE, FLASHING_TIME, FLASH_INTERVAL, BLACK
 )

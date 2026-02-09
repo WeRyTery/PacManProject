@@ -1,4 +1,4 @@
-import pygame
+from pathlib import Path
 
 # Board params
 WIDTH, HEIGHT = 1280, 720
@@ -18,6 +18,10 @@ CIRCLE_X_OFFSET = 10
 REGULAR_RADIUS = 2
 SPECIAL_RADIUS = 5
 
+# Rewards
+FRUIT_POSITION = [17, 14]
+SECONDS_TO_FRUIT_SPAWN = 10
+
 # Colors
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
@@ -33,7 +37,18 @@ SCARED_GHOST_COLOR = (33, 33, 255)
 # Game Settings
 PACMAN_SPEED = 1
 GHOST_SPEED = 1
-PACMAN_LIVES = 3
+PACMAN_LIVES = 1
 SCARED_TIME = 7000 
 FLASHING_TIME = 2000   
 FLASH_INTERVAL = 200
+
+# Buttons
+BUTTON_X = WIDTH // 2.5
+BUTTON_Y = HEIGHT // 3
+BUTTON_WIDTH = WIDTH // 5
+BUTTON_HEIGHT = HEIGHT // 10
+
+# Files
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+FRUIT_DIR = BASE_DIR / "sprites" / "Pac-Man-Pixel-PNG-Image-File.png"
+SAVE_DIR = BASE_DIR / "user" / 'saves' / "score_save.json"

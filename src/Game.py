@@ -1,48 +1,33 @@
 import pygame as pg
-from pacman.constants import WIDTH, HEIGHT, BLACK
-from pacman.board import Board
-from pacman.pacman import Pacman
-from pacman.score import Score
-from pacman.ghost_handler import GhostHandler
 
-FPS = 60
-pg.init() 
-WIN = pg.display.set_mode((WIDTH, HEIGHT))
-pg.display.set_caption("PacMan")
+from pacman.core.constants import WIDTH, HEIGHT
+from pacman.ui.scenes import Scenes
+from pacman.board.board import Board
+from pacman.entities.pacman import Pacman
+from pacman.systems.score import Score
+from pacman.systems.save_manager import Save_manager
+from pacman.entities.ghost_handler import GhostHandler
 
-board = Board()
-score = Score()
-pacman = Pacman(13, 22, board, score)
-ghost_handler = GhostHandler(board)
-
-pacman.ghost_handler = ghost_handler 
 
 def main():
-    run = True
+    FPS = 60
+
+    pg.init() 
+    WIN = pg.display.set_mode((WIDTH, HEIGHT))
+    pg.display.set_caption("PacMan")
+
     clock = pg.time.Clock()
+    scenes = Scenes()
+    board = Board()
+    score = Score()
+    save_manager = Save_manager()
 
-    while run:
-        clock.tick(FPS)
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                run = False
-            pacman.handle_keys(event)
-
-        pacman.update()
-        
-        # Если призраки съели все жизни — Game Over
-        if ghost_handler.update(pacman):
-            print("Game Over!")
-            run = False
-
-        WIN.fill(BLACK)
-        board.draw_board(WIN)
-        pacman.draw(WIN)
-        ghost_handler.draw(WIN)
-        score.draw(WIN, ghost_handler.lives)
-        
-        pg.display.update()
-            
-    pg.quit()
+    pacman = Pacman(13, 22, board, score)
+    ghost_handler = GhostHandler(board)
+    
+    
+    scenes.main_menu(WIN, clock, score, save_manager, FPS)
+    scenes.game_cycle(WIN, clock, board, score, save_manager, pacman, ghost_handler, FPS)
+    scenes.game_over(WIN, clock, score, FPS)
 
 main()

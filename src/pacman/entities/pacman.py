@@ -1,6 +1,6 @@
 import pygame as pg
 import math
-from .constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
+from ..core.constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
 
 class Pacman:
     def __init__(self, col, row, board, score):
@@ -95,6 +95,9 @@ class Pacman:
                 # Вызываем испуг призраков
                 if self.ghost_handler: 
                     self.ghost_handler.make_ghosts_scared()
+            elif cell == "F":
+                board_array[row][col] = " "
+                self.score.add(100)
 
         # Анимация
         if self.vel_x != 0 or self.vel_y != 0:
