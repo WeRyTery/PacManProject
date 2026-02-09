@@ -1,6 +1,6 @@
 import pygame as pg
-from .constants import *
-from .event_bus import FRUIT_SPAWN
+from ..core.constants import *
+from ..core.event_bus import FRUIT_SPAWN
 
 class Board_generator:
     def __init__(self):

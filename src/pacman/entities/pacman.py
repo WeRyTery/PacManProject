@@ -1,6 +1,6 @@
 import pygame as pg
 import math
-from .constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
+from ..core.constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
 
 class Pacman:
     def __init__(self, col, row, board, score):

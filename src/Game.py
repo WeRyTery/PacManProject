@@ -1,37 +1,35 @@
 import pygame as pg
-from pacman.constants import *
-from pacman.board import Board
-from pacman.pacman import Pacman
-from pacman.score import Score
-from pacman.ghost_handler import GhostHandler
-from pacman.scenes import Scenes
 
-FPS = 60
-pg.init() 
-WIN = pg.display.set_mode((WIDTH, HEIGHT))
-pg.display.set_caption("PacMan")
+from pacman.core.constants import WIDTH, HEIGHT
+from pacman.ui.scenes import Scenes
+from pacman.board.board import Board
+from pacman.entities.pacman import Pacman
+from pacman.systems.score import Score
+from pacman.entities.ghost_handler import GhostHandler
 
-scenes = Scenes()
-board = Board()
-score = Score()
-
-pacman = Pacman(13, 22, board, score)
-ghost_handler = GhostHandler(board)
-
-pacman.ghost_handler = ghost_handler 
 
 def main():
-    clock = pg.time.Clock()
-    quit_requested = False
-    
-    quit_requested = scenes.game_cycle(WIN, board, pacman, ghost_handler, score, clock, FPS)
+    FPS = 60
 
+    pg.init() 
+    WIN = pg.display.set_mode((WIDTH, HEIGHT))
+    pg.display.set_caption("PacMan")
+
+    clock = pg.time.Clock()
+    scenes = Scenes()
+    board = Board()
+    score = Score()
+
+    pacman = Pacman(13, 22, board, score)
+    ghost_handler = GhostHandler(board)
+    
+    scenes.main_menu(WIN, clock, FPS)
+
+    quit_requested = scenes.game_cycle(WIN, board, score, pacman, ghost_handler, clock, FPS)
     if quit_requested:
         pg.quit()
         return
     
-    scenes.game_over(WIN, clock, FPS)
-
-    
+    scenes.game_over(WIN, clock, score, FPS)
 
 main()

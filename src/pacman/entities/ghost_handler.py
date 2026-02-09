@@ -1,6 +1,6 @@
 import pygame as pg
 from .ghost import Ghost
-from .constants import RED, CYAN, PINK, ORANGE, GHOST_SPEED, PACMAN_LIVES, CENTERING_W, CENTERING_H, SQUARE_SIZE, WHITE
+from ..core.constants import RED, CYAN, PINK, ORANGE, GHOST_SPEED, PACMAN_LIVES, CENTERING_W, CENTERING_H, SQUARE_SIZE, WHITE
 
 class GhostHandler:
     def __init__(self, board):

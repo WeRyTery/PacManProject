@@ -1,4 +1,4 @@
-from .constants import FRUIT_POSITION
+from ..core.constants import FRUIT_POSITION
 from .board_generator import Board_generator
 
 class Board:
