@@ -1,3 +1,5 @@
+from pathlib import Path
+
 # Board params
 WIDTH, HEIGHT = 1280, 720
 ROWS, COLUMNS = 60, 60
@@ -45,3 +47,8 @@ BUTTON_X = WIDTH // 2.5
 BUTTON_Y = HEIGHT // 3
 BUTTON_WIDTH = WIDTH // 5
 BUTTON_HEIGHT = HEIGHT // 10
+
+# Files
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+FRUIT_DIR = BASE_DIR / "sprites" / "Pac-Man-Pixel-PNG-Image-File.png"
+SAVE_DIR = BASE_DIR / "user" / 'saves' / "score_save.json"

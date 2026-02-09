@@ -41,3 +41,27 @@ def get_saves_button(window, offset_x=0, offset_y=0):
         onClick=lambda: pg.event.post(pg.event.Event(event_bus.SAVELOADER_BUTTON))
     )
     return saves_button
+
+def handle_button_event(window, event, score=None, save_manager=None):
+    if event == event_bus.PLAY_BUTTON:
+        active_window = False
+        return active_window
+    elif event == event_bus.SAVELOADER_BUTTON:
+        best_score = save_manager.load_score()
+        score.best_score = best_score
+        active_saveloader = True
+
+        while active_saveloader:
+            events = pg.event.get()
+
+            for event in events:
+                if event.type == pg.QUIT:
+                    active_saveloader = False
+                    break
+
+            window.fill(BLACK)
+            font = pg.font.SysFont("arial", 30, bold=True)
+            game_score_text = font.render(f"Save file has been loaded from: {SAVE_DIR}", True, GREEN, wraplength=int(WIDTH * 0.8))
+            window.blit(game_score_text, (WIDTH * 0.1, HEIGHT // 2.5))
+            pg.display.update()
+        return best_score

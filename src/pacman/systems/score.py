@@ -23,3 +23,6 @@ class Score:
 
     def get_current_score(self):
         return self.current_score
+    
+    def get_current_best_score(self):
+        return self.best_score

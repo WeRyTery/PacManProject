@@ -6,12 +6,15 @@ from .buttons import *
 from ..core.event_bus import *
 
 class Scenes:
-    def main_menu(self, window, clock, fps=30):
+    def main_menu(self, window, clock, score, save_manager, fps=30):
         offset = BUTTON_HEIGHT+20
 
         play_button = get_play_button(window)
         settings_button = get_settigns_button(window, offset_y=offset)
         saves_button = get_saves_button(window, offset_y=(offset * 2))
+
+        best_score = save_manager.load_score()
+        score.best_score = best_score
 
         active_window = True
 
@@ -22,22 +25,26 @@ class Scenes:
             for event in events:
                 if event.type == pg.QUIT:
                     active_window = False
-                elif event.type == PLAY_BUTTON:
-                    active_window = False
-                    print("Started playing")
+                    exit()
                     return
-
+                elif event.type == PLAY_BUTTON:
+                    active_window = handle_button_event(window, PLAY_BUTTON)
+                elif event.type == SAVELOADER_BUTTON:
+                    best_score = handle_button_event(window, SAVELOADER_BUTTON, score, save_manager)
+                    
             window.fill(BLACK)
+            font = pg.font.SysFont("arial", 20, bold=True)
+            game_score_text = font.render(f"Best score: {best_score}", True, WHITE)
+            window.blit(game_score_text, (WIDTH // 2.25, HEIGHT // 4))
+
             pw.update(events)
             pg.display.update()
-        pg.quit()
 
 
-    def game_cycle(self, window, board, score, pacman, ghosts, clock, fps=60):
+    def game_cycle(self, window, clock, board, score, save_manager, pacman, ghosts, fps=60):
         pg.time.set_timer(FRUIT_SPAWN, (1000 * SECONDS_TO_FRUIT_SPAWN), 0)
 
         game_logic_run = True
-        quit_requested = False
 
         while game_logic_run:
             clock.tick(fps)
@@ -48,10 +55,11 @@ class Scenes:
                     break
                 elif event.type == pg.QUIT:
                     game_logic_run = False
-                    quit_requested = True
+                    save_manager.save_score(score)
+                    pg.quit()
+                    exit()
                 pacman.handle_keys(event)
                 
-
             pacman.update()
 
             #Pacman lost all lives
@@ -67,8 +75,7 @@ class Scenes:
 
             pg.display.update()
             
-        score.save_best_score()
-        return quit_requested
+        save_manager.save_score(score)
 
 
     def game_over(self, window, clock, score, fps=30):

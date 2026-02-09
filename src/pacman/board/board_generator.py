@@ -5,7 +5,7 @@ from ..core.event_bus import FRUIT_SPAWN
 class Board_generator:
     def __init__(self):
         self.board = []
-        self.cherry_img = pg.image.load(r"C:\Users\Ghost\Documents\GitHub\PacManProject\sprites\Pac-Man-Pixel-PNG-Image-File.png").convert_alpha()
+        self.cherry_img = pg.image.load(FRUIT_DIR).convert_alpha()
         self.cherry_img = pg.transform.scale(self.cherry_img, (CIRCLE_SIZE, CIRCLE_SIZE))
 
     def draw_board(self, window, pattern):
