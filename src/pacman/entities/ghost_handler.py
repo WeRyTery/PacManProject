@@ -3,8 +3,9 @@ from .ghost import Ghost
 from ..core.constants import RED, CYAN, PINK, ORANGE, GHOST_SPEED, PACMAN_LIVES, CENTERING_W, CENTERING_H, SQUARE_SIZE, WHITE
 
 class GhostHandler:
-    def __init__(self, board):
+    def __init__(self, board, sound_manager):
         self.board = board
+        self.sound_manager = sound_manager
         self.lives = PACMAN_LIVES
         self.eaten_count = 0
         self.temp_scores = []
@@ -50,6 +51,8 @@ class GhostHandler:
                     self.eaten_count += 1
                     self.reset_ghost(ghost)
                 else:
+                    if "death" in self.sound_manager.sounds:
+                        self.sound_manager.sounds["death"].play()
                     self.lives -= 1
                     if self.lives > 0: self.reset_positions(pacman); return False
                     return True
@@ -58,6 +61,8 @@ class GhostHandler:
     def reset_ghost(self, ghost):
         ghost.scared, ghost.speed, ghost.state = False, GHOST_SPEED, "EXITING"
         ghost.x, ghost.y = CENTERING_W + 13 * SQUARE_SIZE + SQUARE_SIZE // 2, CENTERING_H + 14 * SQUARE_SIZE + SQUARE_SIZE // 2
+        if "eat_ghost" in self.sound_manager.sounds:
+            self.sound_manager.sounds["eat_ghost"].play()
 
     def reset_positions(self, pacman):
         pacman.x, pacman.y = pacman.start_x, pacman.start_y

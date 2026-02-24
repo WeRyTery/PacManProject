@@ -17,14 +17,14 @@ def main():
     WIN = pg.display.set_mode((WIDTH, HEIGHT))
     pg.display.set_caption("PacMan")
 
+    sound_manager = Sound_Manager()
     clock = pg.time.Clock()
-    scenes = Scenes()
+    scenes = Scenes(sound_manager)
     board = Board()
     score = Score()
     save_manager = Save_manager()
 
-    sound_manager = Sound_Manager()
-    ghost_handler = GhostHandler(board)
+    ghost_handler = GhostHandler(board, sound_manager)
     pacman = Pacman(13, 22, board, score, ghost_handler, sound_manager)
     
     

@@ -1,5 +1,6 @@
 import pygame as pg
 from pygame_widgets.button import Button
+from pygame_widgets.slider import Slider
 from ..core.constants import * 
 from ..core import event_bus
 
@@ -65,3 +66,33 @@ def handle_button_event(window, event, score=None, save_manager=None):
             window.blit(game_score_text, (WIDTH * 0.1, HEIGHT // 2.5))
             pg.display.update()
         return best_score
+    
+
+def get_volume_slider(window, offset_y=0):
+    volume_slider = Slider(
+        window, 
+        BUTTON_X, 
+        BUTTON_Y + offset_y, 
+        BUTTON_WIDTH, 
+        20, 
+        min=0, 
+        max=100, 
+        step=1, 
+        initial=100, # Начальное значение 50%
+        colour=YELLOW,
+        handleColour=WHITE
+    )
+    return volume_slider
+
+def get_back_button(window, offset_y=0):
+    return Button(
+        window,
+        BUTTON_X,
+        BUTTON_Y + offset_y,
+        BUTTON_WIDTH,
+        BUTTON_HEIGHT,
+        text='Back',
+        inactiveColour=YELLOW,
+        # Используем существующую систему событий или просто меняем флаг в цикле
+        onClick=lambda: pg.event.post(pg.event.Event(pg.USEREVENT + 10)) 
+    )

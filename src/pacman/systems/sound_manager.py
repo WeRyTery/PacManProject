@@ -32,4 +32,10 @@ class Sound_Manager:
             print(f"Звук {name} не найден среди загруженных!")
 
 
-            
+            # В класс Sound_Manager в файле src/pacman/systems/sound_manager.py
+
+    def set_volume(self, volume_percent):
+        """Устанавливает громкость от 0.0 до 1.0"""
+        volume_float = volume_percent / 100.0
+        for sound in self.sounds.values():
+            sound.set_volume(volume_float)
