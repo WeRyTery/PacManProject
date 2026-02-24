@@ -83,11 +83,13 @@ class Ghost:
         board_array = self.board.get_board()
         col, row = int((self.x - CENTERING_W) // SQUARE_SIZE), int((self.y - CENTERING_H) // SQUARE_SIZE)
         next_col, next_row = col + (1 if vx > 0 else -1 if vx < 0 else 0), row + (1 if vy > 0 else -1 if vy < 0 else 0)
+        
+        # Проверка на выход за пределы массива
         if 0 <= next_row < len(board_array) and 0 <= next_col < len(board_array[0]):
             cell = board_array[next_row][next_col]
             if self.state == "ALIVE": return cell not in ["#", "="]
             return cell != "#"
-        return False
+        return False # Если за пределами — ходить нельзя
 
     def is_at_center(self):
         inner_pos_x = (self.x - CENTERING_W) % SQUARE_SIZE

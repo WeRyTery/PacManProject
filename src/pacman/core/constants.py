@@ -35,8 +35,8 @@ PINK = (255, 182, 193)
 SCARED_GHOST_COLOR = (33, 33, 255)
 
 # Game Settings
-PACMAN_SPEED = 1
-GHOST_SPEED = 1
+PACMAN_SPEED = 1.5
+GHOST_SPEED = 1.5
 PACMAN_LIVES = 1
 SCARED_TIME = 7000 
 FLASHING_TIME = 2000   
@@ -52,3 +52,4 @@ BUTTON_HEIGHT = HEIGHT // 10
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 FRUIT_DIR = BASE_DIR / "sprites" / "Pac-Man-Pixel-PNG-Image-File.png"
 SAVE_DIR = BASE_DIR / "user" / 'saves' / "score_save.json"
+SOUND_DIR = BASE_DIR / "sounds"

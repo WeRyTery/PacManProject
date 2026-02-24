@@ -6,6 +6,7 @@ from pacman.board.board import Board
 from pacman.entities.pacman import Pacman
 from pacman.systems.score import Score
 from pacman.systems.save_manager import Save_manager
+from pacman.systems.sound_manager import Sound_Manager
 from pacman.entities.ghost_handler import GhostHandler
 
 
@@ -22,8 +23,9 @@ def main():
     score = Score()
     save_manager = Save_manager()
 
-    pacman = Pacman(13, 22, board, score)
+    sound_manager = Sound_Manager()
     ghost_handler = GhostHandler(board)
+    pacman = Pacman(13, 22, board, score, ghost_handler, sound_manager)
     
     
     scenes.main_menu(WIN, clock, score, save_manager, FPS)

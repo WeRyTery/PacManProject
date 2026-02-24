@@ -1,12 +1,13 @@
 import pygame as pg
 import math
-from ..core.constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED
+from ..core.constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED, SCARED_TIME
 
 class Pacman:
-    def __init__(self, col, row, board, score):
+    def __init__(self, col, row, board, score, ghost_handler, sound_manager):
         self.board = board 
         self.score = score
-        self.ghost_handler = None # Сюда придет ссылка из Game.py
+        self.ghost_handler = ghost_handler
+        self.sound_manager = sound_manager
         
         self.x = CENTERING_W + col * SQUARE_SIZE + SQUARE_SIZE // 2
         self.y = CENTERING_H + row * SQUARE_SIZE + SQUARE_SIZE // 2
@@ -89,15 +90,22 @@ class Pacman:
             if cell == ".":
                 board_array[row][col] = " "
                 self.score.add(10)
+                if "dot_1" in self.sound_manager.sounds:
+                    self.sound_manager.sounds["dot_1"].play()
             elif cell == "o":
+                
                 board_array[row][col] = " "
                 self.score.add(50)
                 # Вызываем испуг призраков
                 if self.ghost_handler: 
                     self.ghost_handler.make_ghosts_scared()
+                if "power_up" in self.sound_manager.sounds:
+                    self.sound_manager.sounds["power_up"].play(loops=-1, maxtime= SCARED_TIME)
             elif cell == "F":
                 board_array[row][col] = " "
                 self.score.add(100)
+                if "fruit" in self.sound_manager.sounds:
+                    self.sound_manager.sounds["fruit"].play()
 
         # Анимация
         if self.vel_x != 0 or self.vel_y != 0:
