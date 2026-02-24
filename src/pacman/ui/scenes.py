@@ -45,6 +45,7 @@ class Scenes:
         pg.time.set_timer(FRUIT_SPAWN, (1000 * SECONDS_TO_FRUIT_SPAWN), 0)
 
         game_logic_run = True
+        
 
         while game_logic_run:
             clock.tick(fps)

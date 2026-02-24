@@ -21,6 +21,7 @@ class GhostHandler:
 
     def make_ghosts_scared(self):
         self.eaten_count = 0
+
         for ghost in self.ghosts:
             ghost.start_scared()
 
