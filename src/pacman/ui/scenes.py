@@ -8,6 +8,7 @@ from ..core.event_bus import *
 class Scenes:
     def __init__(self, sound_manager):
         self.sound_manager = sound_manager
+        self.game_status_text = "lost"
 
     def main_menu(self, window, clock, score, save_manager, fps=30):
         offset = BUTTON_HEIGHT+20
@@ -83,6 +84,12 @@ class Scenes:
                 game_logic_run = False
                 break
 
+            #All coins collected
+            if board.check_for_win():
+                self.game_logic_run = False
+                self.game_status_text = "won"
+                break
+
             window.fill(BLACK)
             board.draw_board(window)
             pacman.draw(window)
@@ -104,24 +111,23 @@ class Scenes:
                     active_window = False
 
             window.fill(BLACK)
-            font = pg.font.SysFont("arial", 200, bold=True)
-            game_over_text = font.render("Game over!", True, WHITE)
+            font = pg.font.SysFont("arial", 100, bold=True)
+            game_over_text = font.render(f"Game over, you {self.game_status_text}!", True, WHITE)
 
             font = pg.font.SysFont("arial", 100, bold=True)
             game_score_text = font.render(f"Score: {score.get_current_score()}", True, YELLOW)
 
-            window.blit(game_over_text, (WIDTH // 15, HEIGHT // 3))
+            window.blit(game_over_text, (WIDTH // 10, HEIGHT // 3))
             window.blit(game_score_text, (WIDTH // 3, HEIGHT // 1.5))
 
             pg.display.update()
             
-
         pg.quit()
 
 
 
     def settings_menu(self, window, clock, fps=30):
-        # Создаем элементы
+
         volume_slider = get_volume_slider(window, offset_y=0)
         back_button = get_back_button(window, offset_y=100)
         
@@ -136,24 +142,21 @@ class Scenes:
                 if event.type == pg.QUIT:
                     pg.quit()
                     exit()
-                # Если нажата кнопка "Назад"
+
                 if event.type == BACK_EVENT:
                     active_settings = False
 
-            # Обновление громкости через ваш Sound_Manager
             current_vol = volume_slider.getValue()
             self.sound_manager.set_volume(current_vol)
 
-            window.fill(BLACK) # Очищаем экран, чтобы старое меню исчезло
+            window.fill(BLACK)
             
             font = pg.font.SysFont("arial", 30, bold=True)
             text = font.render(f"Volume: {current_vol}%", True, WHITE)
             window.blit(text, (BUTTON_X, BUTTON_Y - 40))
 
-            # pygame_widgets обновляет и рисует только активные (не hidden) элементы
             pw.update(events)
             pg.display.update()
             
-        # Скрываем виджеты перед возвратом в главное меню
         volume_slider.hide()
         back_button.hide()

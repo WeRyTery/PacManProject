@@ -92,6 +92,7 @@ class Pacman:
                 self.score.add(10)
                 if "dot_1" in self.sound_manager.sounds:
                     self.sound_manager.sounds["dot_1"].play()
+                    
             elif cell == "o":
                 
                 board_array[row][col] = " "
@@ -100,7 +101,10 @@ class Pacman:
                 if self.ghost_handler: 
                     self.ghost_handler.make_ghosts_scared()
                 if "power_up" in self.sound_manager.sounds:
-                    self.sound_manager.sounds["power_up"].play(loops=-1, maxtime= SCARED_TIME)
+                    power_sound = self.sound_manager.sounds["power_up"]
+                    power_sound.stop()
+                    
+                    power_sound.play(loops=-1, maxtime= SCARED_TIME)
             elif cell == "F":
                 board_array[row][col] = " "
                 self.score.add(100)
