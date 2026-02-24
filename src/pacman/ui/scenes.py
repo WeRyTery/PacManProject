@@ -37,15 +37,12 @@ class Scenes:
                 elif event.type == SAVELOADER_BUTTON:
                     best_score = handle_button_event(window, SAVELOADER_BUTTON, score, save_manager)
                 elif event.type == SETTINGS_BUTTON:
-                    # Скрываем кнопки главного меню
                     play_button.hide()
                     settings_button.hide()
                     saves_button.hide()
                     
-                    # Запускаем меню настроек
                     self.settings_menu(window, clock, fps)
                     
-                    # После выхода из настроек — снова показываем кнопки меню
                     play_button.show()
                     settings_button.show()
                     saves_button.show()
