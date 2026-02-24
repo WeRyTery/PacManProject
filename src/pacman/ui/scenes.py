@@ -6,6 +6,9 @@ from .buttons import *
 from ..core.event_bus import *
 
 class Scenes:
+    def __init__(self, sound_manager):
+        self.sound_manager = sound_manager
+
     def main_menu(self, window, clock, score, save_manager, fps=30):
         offset = BUTTON_HEIGHT+20
 
@@ -28,9 +31,24 @@ class Scenes:
                     exit()
                     return
                 elif event.type == PLAY_BUTTON:
+                    if "game_start" in self.sound_manager.sounds:
+                        self.sound_manager.sounds["game_start"].play()
                     active_window = handle_button_event(window, PLAY_BUTTON)
                 elif event.type == SAVELOADER_BUTTON:
                     best_score = handle_button_event(window, SAVELOADER_BUTTON, score, save_manager)
+                elif event.type == SETTINGS_BUTTON:
+                    # Скрываем кнопки главного меню
+                    play_button.hide()
+                    settings_button.hide()
+                    saves_button.hide()
+                    
+                    # Запускаем меню настроек
+                    self.settings_menu(window, clock, fps)
+                    
+                    # После выхода из настроек — снова показываем кнопки меню
+                    play_button.show()
+                    settings_button.show()
+                    saves_button.show()
                     
             window.fill(BLACK)
             font = pg.font.SysFont("arial", 20, bold=True)
@@ -99,5 +117,46 @@ class Scenes:
             window.blit(game_score_text, (WIDTH // 3, HEIGHT // 1.5))
 
             pg.display.update()
+            
 
         pg.quit()
+
+
+
+    def settings_menu(self, window, clock, fps=30):
+        # Создаем элементы
+        volume_slider = get_volume_slider(window, offset_y=0)
+        back_button = get_back_button(window, offset_y=100)
+        
+        active_settings = True
+        BACK_EVENT = pg.USEREVENT + 10
+
+        while active_settings:
+            clock.tick(fps)
+            events = pg.event.get()
+
+            for event in events:
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    exit()
+                # Если нажата кнопка "Назад"
+                if event.type == BACK_EVENT:
+                    active_settings = False
+
+            # Обновление громкости через ваш Sound_Manager
+            current_vol = volume_slider.getValue()
+            self.sound_manager.set_volume(current_vol)
+
+            window.fill(BLACK) # Очищаем экран, чтобы старое меню исчезло
+            
+            font = pg.font.SysFont("arial", 30, bold=True)
+            text = font.render(f"Volume: {current_vol}%", True, WHITE)
+            window.blit(text, (BUTTON_X, BUTTON_Y - 40))
+
+            # pygame_widgets обновляет и рисует только активные (не hidden) элементы
+            pw.update(events)
+            pg.display.update()
+            
+        # Скрываем виджеты перед возвратом в главное меню
+        volume_slider.hide()
+        back_button.hide()
