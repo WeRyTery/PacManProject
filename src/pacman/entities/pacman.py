@@ -77,12 +77,12 @@ class Pacman:
         self.x += self.vel_x
         self.y += self.vel_y
 
-        # Телепортация
+        # Teleport
         cols_count = len(self.board.get_board()[0])
         if self.x < CENTERING_W + SQUARE_SIZE // 2: self.x = CENTERING_W + (cols_count - 1) * SQUARE_SIZE + SQUARE_SIZE // 2
         elif self.x > CENTERING_W + cols_count * SQUARE_SIZE - SQUARE_SIZE // 2: self.x = CENTERING_W + SQUARE_SIZE // 2
 
-        # Поедание
+        # Eating
         board_array = self.board.get_board()
         col, row = int((self.x - CENTERING_W) // SQUARE_SIZE), int((self.y - CENTERING_H) // SQUARE_SIZE)
         if 0 <= row < len(board_array) and 0 <= col < len(board_array[0]):
@@ -92,22 +92,26 @@ class Pacman:
                 self.score.add(10)
                 if "dot_1" in self.sound_manager.sounds:
                     self.sound_manager.sounds["dot_1"].play()
+                    
             elif cell == "o":
                 
                 board_array[row][col] = " "
                 self.score.add(50)
-                # Вызываем испуг призраков
+                # Set scared status
                 if self.ghost_handler: 
                     self.ghost_handler.make_ghosts_scared()
                 if "power_up" in self.sound_manager.sounds:
-                    self.sound_manager.sounds["power_up"].play(loops=-1, maxtime= SCARED_TIME)
+                    power_sound = self.sound_manager.sounds["power_up"]
+                    power_sound.stop()
+                    
+                    power_sound.play(loops=-1, maxtime= SCARED_TIME)
             elif cell == "F":
                 board_array[row][col] = " "
                 self.score.add(100)
                 if "fruit" in self.sound_manager.sounds:
                     self.sound_manager.sounds["fruit"].play()
 
-        # Анимация
+        # Animation
         if self.vel_x != 0 or self.vel_y != 0:
             if self.opening:
                 self.mouth_open_angle += self.animation_speed

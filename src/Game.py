@@ -1,4 +1,5 @@
 import pygame as pg
+import argparse
 
 from pacman.core.constants import WIDTH, HEIGHT
 from pacman.ui.scenes import Scenes
@@ -11,7 +12,8 @@ from pacman.entities.ghost_handler import GhostHandler
 
 
 def main():
-    FPS = 60
+    print(argument_parser())
+    FPS = argument_parser()
 
     pg.init() 
     WIN = pg.display.set_mode((WIDTH, HEIGHT))
@@ -32,4 +34,13 @@ def main():
     scenes.game_cycle(WIN, clock, board, score, save_manager, pacman, ghost_handler, FPS)
     scenes.game_over(WIN, clock, score, FPS)
 
+
+def argument_parser() -> int:
+    parser = argparse.ArgumentParser(prog="Pacman")
+    parser.add_argument('-f', '--fps',
+                         default=60,
+                         type=int
+                        )
+    args = parser.parse_args()
+    return args.fps
 main()

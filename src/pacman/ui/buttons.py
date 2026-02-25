@@ -13,6 +13,7 @@ def get_play_button(window, offset_x=0, offset_y=0):
         BUTTON_HEIGHT,
         text = 'Play',
         inactiveColour=YELLOW,
+        hoverColour = ORANGE,
         onClick=lambda: pg.event.post(pg.event.Event(event_bus.PLAY_BUTTON))
     )
     return play_button
@@ -26,6 +27,7 @@ def get_settigns_button(window, offset_x=0, offset_y=0):
         BUTTON_HEIGHT,
         text = "Settings",
         inactiveColour=YELLOW,
+        hoverColour = ORANGE,
         onClick=lambda: pg.event.post(pg.event.Event(event_bus.SETTINGS_BUTTON))
     )
     return settings_button
@@ -39,6 +41,7 @@ def get_saves_button(window, offset_x=0, offset_y=0):
         BUTTON_HEIGHT,
         text = "Load save",
         inactiveColour=YELLOW,
+        hoverColour = ORANGE,
         onClick=lambda: pg.event.post(pg.event.Event(event_bus.SAVELOADER_BUTTON))
     )
     return saves_button
@@ -78,7 +81,7 @@ def get_volume_slider(window, offset_y=0):
         min=0, 
         max=100, 
         step=1, 
-        initial=100, # Начальное значение 50%
+        initial=100,
         colour=YELLOW,
         handleColour=WHITE
     )
@@ -93,6 +96,7 @@ def get_back_button(window, offset_y=0):
         BUTTON_HEIGHT,
         text='Back',
         inactiveColour=YELLOW,
-        # Используем существующую систему событий или просто меняем флаг в цикле
+        hoverColour = ORANGE,
+   
         onClick=lambda: pg.event.post(pg.event.Event(pg.USEREVENT + 10)) 
     )

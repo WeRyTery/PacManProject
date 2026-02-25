@@ -10,11 +10,9 @@ class Score:
         self.current_score += points
 
     def draw(self, window, lives):
-        # Отрисовка счета
         score_surface = self.font.render(f"Score: {self.current_score}", True, (255, 255, 255))
         window.blit(score_surface, (10, 10))
         
-        # Отрисовка жизней (чуть ниже счета)
         lives_surface = self.font.render(f"Lives: {lives}", True, (255, 255, 255))
         window.blit(lives_surface, (10, 40))
 

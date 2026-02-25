@@ -14,11 +14,10 @@ class Sound_Manager:
             print(f"Папка {SOUND_DIR} не найдена!")
             return
 
-        # Ищем все файлы mp3, wav и ogg
         valid_extensions = ('.wav', '.mp3', '.ogg')
         for file in os.listdir(SOUND_DIR):
             if file.lower().endswith(valid_extensions):
-                name = os.path.splitext(file)[0] # Имя файла без расширения
+                name = os.path.splitext(file)[0] # removes file extension
                 try:
                     self.sounds[name] = pg.mixer.Sound(os.path.join(SOUND_DIR, file))
                     print(f"Загружен звук: {name}")
@@ -29,13 +28,9 @@ class Sound_Manager:
         if name in self.sounds:
             self.sounds[name].play()
         else:
-            print(f"Звук {name} не найден среди загруженных!")
-
-
-            # В класс Sound_Manager в файле src/pacman/systems/sound_manager.py
+            print(f"Sound {name} was not found!")
 
     def set_volume(self, volume_percent):
-        """Устанавливает громкость от 0.0 до 1.0"""
         volume_float = volume_percent / 100.0
         for sound in self.sounds.values():
             sound.set_volume(volume_float)
