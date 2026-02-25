@@ -12,7 +12,6 @@ class GhostHandler:
         self.spawn_ghosts()
 
     def spawn_ghosts(self):
-        # Призраки выходят с интервалом: 0, 3, 6 и 9 секунд
         self.ghosts = [
             Ghost(13, 14, self.board, RED, 0),
             Ghost(13, 15, self.board, PINK, 3000),
@@ -28,7 +27,6 @@ class GhostHandler:
 
     def update(self, pacman):
         current_time = pg.time.get_ticks()
-        # Удаляем надписи через 1 секунду
         self.temp_scores = [s for s in self.temp_scores if current_time - s['time'] < 1000]
 
         for ghost in self.ghosts:

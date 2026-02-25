@@ -50,11 +50,11 @@ class Ghost:
         else:
             body_color = self.normal_color
 
-        # тело
+        # body
         pg.draw.circle(window, body_color, (int(self.x), int(self.y)), self.radius)
         pg.draw.rect(window, body_color, (self.x - self.radius, self.y, self.radius * 2, self.radius))
 
-        # глаза
+        # eyes
         eye_radius = self.radius // 3
         eye_offset = self.radius // 2
         if not self.scared:

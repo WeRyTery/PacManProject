@@ -62,7 +62,6 @@ class Scenes:
 
         game_logic_run = True
         
-
         while game_logic_run:
             clock.tick(fps)
 

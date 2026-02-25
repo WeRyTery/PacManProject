@@ -13,7 +13,7 @@ class Save_manager:
         score.save_best_score()
         score_data = self.convert_score_to_json(score.best_score)
 
-        SAVE_DIR.parent.mkdir(parents=True, exist_ok=True)
+        SAVE_DIR.parent.mkdir(parents=True, exist_ok=True) # creates directory if it is missing
 
         with open(SAVE_DIR, 'w+') as f:
             json.dump(score_data, f, )
