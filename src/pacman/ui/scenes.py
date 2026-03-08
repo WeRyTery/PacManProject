@@ -96,7 +96,7 @@ class Scenes:
             score.draw(window, ghosts.lives)
 
             pg.display.update()
-            
+        
         save_manager.save_score(score)
 
 
