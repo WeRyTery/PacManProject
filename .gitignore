@@ -13,3 +13,6 @@ venv/
 
 #Saves
 *.json
+
+#flake8
+flake-reports/
