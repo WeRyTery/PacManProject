@@ -18,4 +18,4 @@ venv/
 flake-reports/
 
 #Pytest
-test_report.html/
+test_report.html
