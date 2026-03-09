@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: src\pacman\ui\buttons.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="src.pacman.ui.buttons.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               src\pacman\ui\buttons.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F405">
+               <span class="count sev-1">
+                  35
+               </span>
+               <strong>F405:</strong> 'BUTTON_X' may be undefined, or defined from star imports: ..core.constants
+               
+                  (and 11 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>'BUTTON_X' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l10">
+                  <tt><i>10</i>         <span class="n">BUTTON_X</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_Y' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l11">
+                  <tt><i>11</i>         <span class="n">BUTTON_Y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l12">
+                  <tt><i>12</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_HEIGHT' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l13">
+                  <tt><i>13</i>         <span class="n">BUTTON_HEIGHT</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'YELLOW' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l15">
+                  <tt><i>15</i>         <span class="n">inactiveColour</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'ORANGE' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l16">
+                  <tt><i>16</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_X' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l24">
+                  <tt><i>24</i>         <span class="n">BUTTON_X</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_Y' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l25">
+                  <tt><i>25</i>         <span class="n">BUTTON_Y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l26">
+                  <tt><i>26</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_HEIGHT' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l27">
+                  <tt><i>27</i>         <span class="n">BUTTON_HEIGHT</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'YELLOW' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l29">
+                  <tt><i>29</i>         <span class="n">inactiveColour</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'ORANGE' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l30">
+                  <tt><i>30</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_X' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l38">
+                  <tt><i>38</i>         <span class="n">BUTTON_X</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_Y' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l39">
+                  <tt><i>39</i>         <span class="n">BUTTON_Y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l40">
+                  <tt><i>40</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_HEIGHT' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l41">
+                  <tt><i>41</i>         <span class="n">BUTTON_HEIGHT</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'YELLOW' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l43">
+                  <tt><i>43</i>         <span class="n">inactiveColour</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'ORANGE' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l44">
+                  <tt><i>44</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BLACK' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l66">
+                  <tt><i>66</i>             <span class="n">window</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">BLACK</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'GREEN' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l68">
+                  <tt><i>68</i>             <span class="n">game_score_text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Save file has been loaded from: </span><span class="si">{</span><span class="n">SAVE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">wraplength</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'SAVE_DIR' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l68">
+                  <tt><i>68</i>             <span class="n">game_score_text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Save file has been loaded from: </span><span class="si">{</span><span class="n">SAVE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">wraplength</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l68">
+                  <tt><i>68</i>             <span class="n">game_score_text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Save file has been loaded from: </span><span class="si">{</span><span class="n">SAVE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">wraplength</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'HEIGHT' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l69">
+                  <tt><i>69</i>             <span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">game_score_text</span><span class="p">,</span> <span class="p">(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">HEIGHT</span> <span class="o">//</span> <span class="mf">2.5</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l69">
+                  <tt><i>69</i>             <span class="n">window</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">game_score_text</span><span class="p">,</span> <span class="p">(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">HEIGHT</span> <span class="o">//</span> <span class="mf">2.5</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_X' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l77">
+                  <tt><i>77</i>         <span class="n">BUTTON_X</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_Y' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l78">
+                  <tt><i>78</i>         <span class="n">BUTTON_Y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l79">
+                  <tt><i>79</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>'YELLOW' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l85">
+                  <tt><i>85</i>         <span class="n">colour</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'WHITE' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l86">
+                  <tt><i>86</i>         <span class="n">handleColour</span><span class="o">=</span><span class="n">WHITE</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_X' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l93">
+                  <tt><i>93</i>         <span class="n">BUTTON_X</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_Y' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l94">
+                  <tt><i>94</i>         <span class="n">BUTTON_Y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_WIDTH' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l95">
+                  <tt><i>95</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'BUTTON_HEIGHT' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l96">
+                  <tt><i>96</i>         <span class="n">BUTTON_HEIGHT</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'YELLOW' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l98">
+                  <tt><i>98</i>         <span class="n">inactiveColour</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'ORANGE' may be undefined, or defined from star imports: ..core.constants:</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l99">
+                  <tt><i>99</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F403">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F403:</strong> 'from ..core.constants import *' used; unable to detect undefined names
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l4">
+                  <tt><i>4</i> <span class="kn">from</span><span class="w"> </span><span class="nn">..core.constants</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  14
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l14">
+                  <tt><i>14</i>         <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Play&#39;</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l16">
+                  <tt><i>16</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l28">
+                  <tt><i>28</i>         <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l30">
+                  <tt><i>30</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l42">
+                  <tt><i>42</i>         <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Load save&quot;</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l44">
+                  <tt><i>44</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l99">
+                  <tt><i>99</i>         <span class="n">hoverColour</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  11
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l4">
+                  <tt><i>4</i> <span class="kn">from</span><span class="w"> </span><span class="nn">..core.constants</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l12">
+                  <tt><i>12</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l76">
+                  <tt><i>76</i>         <span class="n">window</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l77">
+                  <tt><i>77</i>         <span class="n">BUTTON_X</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l78">
+                  <tt><i>78</i>         <span class="n">BUTTON_Y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l79">
+                  <tt><i>79</i>         <span class="n">BUTTON_WIDTH</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l80">
+                  <tt><i>80</i>         <span class="mi">20</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l81">
+                  <tt><i>81</i>         <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l82">
+                  <tt><i>82</i>         <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l83">
+                  <tt><i>83</i>         <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l101">
+                  <tt><i>101</i>         <span class="n">onClick</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">USEREVENT</span> <span class="o">+</span> <span class="mi">10</span><span class="p">))</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l7">
+                  <tt><i>7</i> <span class="k">def</span><span class="w"> </span><span class="nf">get_play_button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">offset_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">offset_y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l21">
+                  <tt><i>21</i> <span class="k">def</span><span class="w"> </span><span class="nf">get_settigns_button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">offset_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">offset_y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l35">
+                  <tt><i>35</i> <span class="k">def</span><span class="w"> </span><span class="nf">get_saves_button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">offset_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">offset_y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l49">
+                  <tt><i>49</i> <span class="k">def</span><span class="w"> </span><span class="nf">handle_button_event</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l90">
+                  <tt><i>90</i> <span class="k">def</span><span class="w"> </span><span class="nf">get_back_button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">offset_y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E501:</strong> line too long (80 > 79 characters)
+               
+                  (and 2 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l31">
+                  <tt><i>31</i>         <span class="n">onClick</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">event_bus</span><span class="o">.</span><span class="n">SETTINGS_BUTTON</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l45">
+                  <tt><i>45</i>         <span class="n">onClick</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">event_bus</span><span class="o">.</span><span class="n">SAVELOADER_BUTTON</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (130 > 79 characters):</p>
+               
+               <a href="src.pacman.ui.buttons.source.html#l68">
+                  <tt><i>68</i>             <span class="n">game_score_text</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Save file has been loaded from: </span><span class="si">{</span><span class="n">SAVE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">wraplength</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l72">
+                  <tt><i>72</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l100">
+                  <tt><i>100</i>    </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W292">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W292:</strong> no newline at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="src.pacman.ui.buttons.source.html#l102">
+                  <tt><i>102</i>     <span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
