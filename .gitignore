@@ -16,3 +16,6 @@ venv/
 
 #flake8
 flake-reports/
+
+#Pytest
+test_report.html/
