@@ -15,7 +15,7 @@ def main():
     print(argument_parser())
     FPS = argument_parser()
 
-    pg.init() 
+    pg.init()
     WIN = pg.display.set_mode((WIDTH, HEIGHT))
     pg.display.set_caption("PacMan")
 
@@ -28,19 +28,19 @@ def main():
 
     ghost_handler = GhostHandler(board, sound_manager)
     pacman = Pacman(13, 22, board, score, ghost_handler, sound_manager)
-    
-    
+
     scenes.main_menu(WIN, clock, score, save_manager, FPS)
-    scenes.game_cycle(WIN, clock, board, score, save_manager, pacman, ghost_handler, FPS)
+    scenes.game_cycle(
+        WIN, clock, board, score, save_manager, pacman, ghost_handler, FPS
+    )
     scenes.game_over(WIN, clock, score, FPS)
 
 
 def argument_parser() -> int:
     parser = argparse.ArgumentParser(prog="Pacman")
-    parser.add_argument('-f', '--fps',
-                         default=60,
-                         type=int
-                        )
+    parser.add_argument("-f", "--fps", default=60, type=int)
     args = parser.parse_args()
     return args.fps
+
+
 main()

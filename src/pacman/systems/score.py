@@ -1,5 +1,6 @@
 import pygame as pg
 
+
 class Score:
     def __init__(self):
         self.current_score = 0
@@ -10,9 +11,11 @@ class Score:
         self.current_score += points
 
     def draw(self, window, lives):
-        score_surface = self.font.render(f"Score: {self.current_score}", True, (255, 255, 255))
+        score_surface = self.font.render(
+            f"Score: {self.current_score}", True, (255, 255, 255)
+        )
         window.blit(score_surface, (10, 10))
-        
+
         lives_surface = self.font.render(f"Lives: {lives}", True, (255, 255, 255))
         window.blit(lives_surface, (10, 40))
 
@@ -21,6 +24,6 @@ class Score:
 
     def get_current_score(self):
         return self.current_score
-    
+
     def get_current_best_score(self):
         return self.best_score

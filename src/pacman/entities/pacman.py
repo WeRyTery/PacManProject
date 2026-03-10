@@ -1,18 +1,26 @@
 import pygame as pg
 import math
-from ..core.constants import YELLOW, SQUARE_SIZE, CENTERING_W, CENTERING_H, PACMAN_SPEED, SCARED_TIME
+from ..core.constants import (
+    YELLOW,
+    SQUARE_SIZE,
+    CENTERING_W,
+    CENTERING_H,
+    PACMAN_SPEED,
+    SCARED_TIME,
+)
+
 
 class Pacman:
     def __init__(self, col, row, board, score, ghost_handler, sound_manager):
-        self.board = board 
+        self.board = board
         self.score = score
         self.ghost_handler = ghost_handler
         self.sound_manager = sound_manager
-        
+
         self.x = CENTERING_W + col * SQUARE_SIZE + SQUARE_SIZE // 2
         self.y = CENTERING_H + row * SQUARE_SIZE + SQUARE_SIZE // 2
         self.start_x, self.start_y = self.x, self.y
-        
+
         self.radius = SQUARE_SIZE // 2 - 2
         self.vel_x, self.vel_y = 0, 0
         self.next_vel_x, self.next_vel_y = 0, 0
@@ -27,30 +35,46 @@ class Pacman:
             pg.draw.circle(window, YELLOW, center, self.radius)
         else:
             base_angle = 0
-            if self.vel_x > 0: base_angle = 0
-            elif self.vel_x < 0: base_angle = math.pi
-            elif self.vel_y > 0: base_angle = 0.5 * math.pi
-            elif self.vel_y < 0: base_angle = 1.5 * math.pi
+            if self.vel_x > 0:
+                base_angle = 0
+            elif self.vel_x < 0:
+                base_angle = math.pi
+            elif self.vel_y > 0:
+                base_angle = 0.5 * math.pi
+            elif self.vel_y < 0:
+                base_angle = 1.5 * math.pi
 
             points = [center]
             start_deg = math.degrees(base_angle) + self.mouth_open_angle
             end_deg = math.degrees(base_angle) + (360 - self.mouth_open_angle)
             for i in range(21):
                 angle = math.radians(start_deg + (end_deg - start_deg) * i / 20)
-                points.append((self.x + self.radius * math.cos(angle), self.y + self.radius * math.sin(angle)))
+                points.append(
+                    (
+                        self.x + self.radius * math.cos(angle),
+                        self.y + self.radius * math.sin(angle),
+                    )
+                )
             pg.draw.polygon(window, YELLOW, points)
 
     def handle_keys(self, event):
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_a: self.next_vel_x, self.next_vel_y = -PACMAN_SPEED, 0
-            elif event.key == pg.K_d: self.next_vel_x, self.next_vel_y = PACMAN_SPEED, 0
-            elif event.key == pg.K_w: self.next_vel_x, self.next_vel_y = 0, -PACMAN_SPEED
-            elif event.key == pg.K_s: self.next_vel_x, self.next_vel_y = 0, PACMAN_SPEED
+            if event.key == pg.K_a:
+                self.next_vel_x, self.next_vel_y = -PACMAN_SPEED, 0
+            elif event.key == pg.K_d:
+                self.next_vel_x, self.next_vel_y = PACMAN_SPEED, 0
+            elif event.key == pg.K_w:
+                self.next_vel_x, self.next_vel_y = 0, -PACMAN_SPEED
+            elif event.key == pg.K_s:
+                self.next_vel_x, self.next_vel_y = 0, PACMAN_SPEED
 
     def is_at_center(self):
         inner_pos_x = (self.x - CENTERING_W) % SQUARE_SIZE
         inner_pos_y = (self.y - CENTERING_H) % SQUARE_SIZE
-        return abs(inner_pos_x - SQUARE_SIZE // 2) <= PACMAN_SPEED and abs(inner_pos_y - SQUARE_SIZE // 2) <= PACMAN_SPEED
+        return (
+            abs(inner_pos_x - SQUARE_SIZE // 2) <= PACMAN_SPEED
+            and abs(inner_pos_y - SQUARE_SIZE // 2) <= PACMAN_SPEED
+        )
 
     def can_move(self, vx, vy):
         board_array = self.board.get_board()
@@ -58,7 +82,8 @@ class Pacman:
         row = int((self.y - CENTERING_H) // SQUARE_SIZE)
         next_col = col + (1 if vx > 0 else -1 if vx < 0 else 0)
         next_row = row + (1 if vy > 0 else -1 if vy < 0 else 0)
-        if next_col < 0 or next_col >= len(board_array[0]): return True 
+        if next_col < 0 or next_col >= len(board_array[0]):
+            return True
         if 0 <= next_row < len(board_array):
             return board_array[next_row][next_col] not in ["#", "="]
         return False
@@ -66,8 +91,13 @@ class Pacman:
     def update(self):
         if (self.next_vel_x != 0 or self.next_vel_y != 0) and self.is_at_center():
             if self.can_move(self.next_vel_x, self.next_vel_y):
-                col, row = int((self.x - CENTERING_W) // SQUARE_SIZE), int((self.y - CENTERING_H) // SQUARE_SIZE)
-                self.x, self.y = CENTERING_W + col * SQUARE_SIZE + SQUARE_SIZE // 2, CENTERING_H + row * SQUARE_SIZE + SQUARE_SIZE // 2
+                col, row = int((self.x - CENTERING_W) // SQUARE_SIZE), int(
+                    (self.y - CENTERING_H) // SQUARE_SIZE
+                )
+                self.x, self.y = (
+                    CENTERING_W + col * SQUARE_SIZE + SQUARE_SIZE // 2,
+                    CENTERING_H + row * SQUARE_SIZE + SQUARE_SIZE // 2,
+                )
                 self.vel_x, self.vel_y = self.next_vel_x, self.next_vel_y
                 self.next_vel_x, self.next_vel_y = 0, 0
 
@@ -79,12 +109,16 @@ class Pacman:
 
         # Teleport
         cols_count = len(self.board.get_board()[0])
-        if self.x < CENTERING_W + SQUARE_SIZE // 2: self.x = CENTERING_W + (cols_count - 1) * SQUARE_SIZE + SQUARE_SIZE // 2
-        elif self.x > CENTERING_W + cols_count * SQUARE_SIZE - SQUARE_SIZE // 2: self.x = CENTERING_W + SQUARE_SIZE // 2
+        if self.x < CENTERING_W + SQUARE_SIZE // 2:
+            self.x = CENTERING_W + (cols_count - 1) * SQUARE_SIZE + SQUARE_SIZE // 2
+        elif self.x > CENTERING_W + cols_count * SQUARE_SIZE - SQUARE_SIZE // 2:
+            self.x = CENTERING_W + SQUARE_SIZE // 2
 
         # Eating
         board_array = self.board.get_board()
-        col, row = int((self.x - CENTERING_W) // SQUARE_SIZE), int((self.y - CENTERING_H) // SQUARE_SIZE)
+        col, row = int((self.x - CENTERING_W) // SQUARE_SIZE), int(
+            (self.y - CENTERING_H) // SQUARE_SIZE
+        )
         if 0 <= row < len(board_array) and 0 <= col < len(board_array[0]):
             cell = board_array[row][col]
             if cell == ".":
@@ -92,19 +126,19 @@ class Pacman:
                 self.score.add(10)
                 if "dot_1" in self.sound_manager.sounds:
                     self.sound_manager.sounds["dot_1"].play()
-                    
+
             elif cell == "o":
-                
+
                 board_array[row][col] = " "
                 self.score.add(50)
                 # Set scared status
-                if self.ghost_handler: 
+                if self.ghost_handler:
                     self.ghost_handler.make_ghosts_scared()
                 if "power_up" in self.sound_manager.sounds:
                     power_sound = self.sound_manager.sounds["power_up"]
                     power_sound.stop()
-                    
-                    power_sound.play(loops=-1, maxtime= SCARED_TIME)
+
+                    power_sound.play(loops=-1, maxtime=SCARED_TIME)
             elif cell == "F":
                 board_array[row][col] = " "
                 self.score.add(100)
@@ -115,8 +149,11 @@ class Pacman:
         if self.vel_x != 0 or self.vel_y != 0:
             if self.opening:
                 self.mouth_open_angle += self.animation_speed
-                if self.mouth_open_angle >= 45: self.opening = False
+                if self.mouth_open_angle >= 45:
+                    self.opening = False
             else:
                 self.mouth_open_angle -= self.animation_speed
-                if self.mouth_open_angle <= 0: self.opening = True
-        else: self.mouth_open_angle = 0
+                if self.mouth_open_angle <= 0:
+                    self.opening = True
+        else:
+            self.mouth_open_angle = 0

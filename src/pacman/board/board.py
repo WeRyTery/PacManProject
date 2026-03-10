@@ -1,9 +1,10 @@
 from ..core.constants import FRUIT_POSITION
 from .board_generator import Board_generator
 
+
 class Board:
     def __init__(self):
-        #Game level pattern
+        # Game level pattern
         self.board = [
             list("############################"),
             list("#............##............#"),
@@ -35,13 +36,13 @@ class Board:
             list("############################"),
         ]
         self.generator = Board_generator()
-    
+
     def draw_board(self, WIN):
         self.generator.draw_board(WIN, self.board)
-    
+
     def get_board(self):
         return self.board
-    
+
     def update_board(self, new_board):
         self.board = new_board
 
@@ -53,4 +54,3 @@ class Board:
 
     def check_for_win(self):
         return not any("." in row for row in self.board)
-        

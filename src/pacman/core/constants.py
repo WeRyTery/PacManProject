@@ -39,7 +39,7 @@ PACMAN_SPEED = 1.5
 GHOST_SPEED = 1.5
 PACMAN_LIVES = 3
 SCARED_TIME = 7000
-FLASHING_TIME = 2000   
+FLASHING_TIME = 2000
 FLASH_INTERVAL = 200
 
 # Buttons
@@ -51,5 +51,5 @@ BUTTON_HEIGHT = HEIGHT // 10
 # Files
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 FRUIT_DIR = BASE_DIR / "sprites" / "Pac-Man-Pixel-PNG-Image-File.png"
-SAVE_DIR = BASE_DIR / "user" / 'saves' / "score_save.json"
+SAVE_DIR = BASE_DIR / "user" / "saves" / "score_save.json"
 SOUND_DIR = BASE_DIR / "sounds"
