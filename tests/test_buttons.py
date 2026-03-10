@@ -9,7 +9,7 @@ def test_play_button_event():
     event = event_bus.PLAY_BUTTON
 
     result = buttons.handle_button_event(window, event)
-    assert result == False
+    assert result is False
 
 
 def test_saveloader_button_event(monkeypatch):

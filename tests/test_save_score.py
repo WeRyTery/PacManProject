@@ -1,6 +1,7 @@
 from pacman.systems.save_manager import Save_manager
 from pacman.systems.score import Score
 
+
 class TestSaveScore:
 
     def test_save_and_load(self):
@@ -12,8 +13,8 @@ class TestSaveScore:
 
         loaded_score = save_manager.load_score()
         assert loaded_score == score.get_current_best_score()
-    
-    def test_score_get(self): 
+
+    def test_score_get(self):
         score = Score()
         assert score.get_current_score() == 0
 
@@ -22,7 +23,7 @@ class TestSaveScore:
         score_val = 50
 
         score.add(score_val)
-        assert score.get_current_score() == score_val 
+        assert score.get_current_score() == score_val
 
     def test_score_get_best(self):
         score = Score()
@@ -43,7 +44,3 @@ class TestSaveScore:
 
         score.save_best_score()
         assert score.best_score == new_best_score
-
-        
-
-

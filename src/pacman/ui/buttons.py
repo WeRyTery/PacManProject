@@ -12,10 +12,10 @@ def get_play_button(window, offset_x=0, offset_y=0):
         BUTTON_Y + offset_y,
         BUTTON_WIDTH,
         BUTTON_HEIGHT,
-        text='Play',
+        text="Play",
         inactiveColour=YELLOW,
         hoverColour=ORANGE,
-        onClick=lambda: pg.event.post(pg.event.Event(event_bus.PLAY_BUTTON))
+        onClick=lambda: pg.event.post(pg.event.Event(event_bus.PLAY_BUTTON)),
     )
     return play_button
 
@@ -30,8 +30,7 @@ def get_settigns_button(window, offset_x=0, offset_y=0):
         text="Settings",
         inactiveColour=YELLOW,
         hoverColour=ORANGE,
-        onClick=lambda: pg.event.post(
-            pg.event.Event(event_bus.SETTINGS_BUTTON))
+        onClick=lambda: pg.event.post(pg.event.Event(event_bus.SETTINGS_BUTTON)),
     )
     return settings_button
 
@@ -46,8 +45,7 @@ def get_saves_button(window, offset_x=0, offset_y=0):
         text="Load save",
         inactiveColour=YELLOW,
         hoverColour=ORANGE,
-        onClick=lambda: pg.event.post(
-            pg.event.Event(event_bus.SAVELOADER_BUTTON))
+        onClick=lambda: pg.event.post(pg.event.Event(event_bus.SAVELOADER_BUTTON)),
     )
     return saves_button
 
@@ -72,7 +70,8 @@ def handle_button_event(window, event, score=None, save_manager=None):
             window.fill(BLACK)
             font = pg.font.SysFont("arial", 30, bold=True)
             game_score_text = font.render(
-                f"Save file has been loaded from: {SAVE_DIR}", True, GREEN)
+                f"Save file has been loaded from: {SAVE_DIR}", True, GREEN
+            )
             window.blit(game_score_text, (WIDTH * 0.1, HEIGHT // 2.5))
             pg.display.update()
         return best_score
@@ -90,7 +89,7 @@ def get_volume_slider(window, offset_y=0):
         step=1,
         initial=100,
         colour=YELLOW,
-        handleColour=WHITE
+        handleColour=WHITE,
     )
     return volume_slider
 
@@ -102,9 +101,8 @@ def get_back_button(window, offset_y=0):
         BUTTON_Y + offset_y,
         BUTTON_WIDTH,
         BUTTON_HEIGHT,
-        text='Back',
+        text="Back",
         inactiveColour=YELLOW,
         hoverColour=ORANGE,
-
-        onClick=lambda: pg.event.post(pg.event.Event(pg.USEREVENT + 10))
+        onClick=lambda: pg.event.post(pg.event.Event(pg.USEREVENT + 10)),
     )
