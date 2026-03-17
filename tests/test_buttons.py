@@ -1,9 +1,11 @@
+import pytest
 import pygame
 from pacman.core import event_bus
 from pacman.ui import buttons
 from unittest.mock import Mock
 
 
+@pytest.mark.UI
 def test_play_button_event():
     window = pygame.Surface((800, 800))
     event = event_bus.PLAY_BUTTON
@@ -12,6 +14,7 @@ def test_play_button_event():
     assert result is False
 
 
+@pytest.mark.UI
 def test_saveloader_button_event(monkeypatch):
     window = pygame.Surface((800, 800))
     event = event_bus.SAVELOADER_BUTTON
