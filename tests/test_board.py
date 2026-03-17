@@ -1,8 +1,10 @@
+import pytest
 import pygame
 from pacman.board.board_generator import Board_generator
 
 
 class TestBoard:
+    @pytest.mark.UI
     def test_draw_board(self):
         pygame.init()
         pygame.display.set_mode((1, 1))
