@@ -137,9 +137,10 @@ class Ghost:
         inner_pos_x = (self.x - CENTERING_W) % SQUARE_SIZE
         inner_pos_y = (self.y - CENTERING_H) % SQUARE_SIZE
 
-        return (abs(inner_pos_x - SQUARE_SIZE // 2) < self.max_speed
-                and abs(inner_pos_y - SQUARE_SIZE // 2) < self.max_speed
-                )
+        return (
+            abs(inner_pos_x - SQUARE_SIZE // 2) < self.max_speed
+            and abs(inner_pos_y - SQUARE_SIZE // 2) < self.max_speed
+        )
 
     def update(self, target_pos):
         if pg.time.get_ticks() - self.start_time < self.spawn_delay:

@@ -19,6 +19,8 @@ def score(pygame_init):
 @pytest.fixture
 def save_manager(pygame_init):
     return Save_manager()
+
+
 ########################################################################################
 
 
@@ -46,11 +48,9 @@ def test_score_add(score, score_val):
 
 
 @pytest.mark.Data
-@pytest.mark.parametrize("score_val, best_score_val",
-                         [(100, 150),
-                          (200, 300),
-                          (350, 900)]
-                         )
+@pytest.mark.parametrize(
+    "score_val, best_score_val", [(100, 150), (200, 300), (350, 900)]
+)
 def test_score_get_best(score, score_val, best_score_val):
     score.add(score_val)
 
@@ -59,11 +59,9 @@ def test_score_get_best(score, score_val, best_score_val):
 
 
 @pytest.mark.Data
-@pytest.mark.parametrize("old_best_score, new_best_score",
-                         [(100, 150),
-                          (200, 400),
-                          (300, 500)]
-                         )
+@pytest.mark.parametrize(
+    "old_best_score, new_best_score", [(100, 150), (200, 400), (300, 500)]
+)
 def test_score_best_Save(score, old_best_score, new_best_score):
     new_best_score = new_best_score
     score.best_score = old_best_score
